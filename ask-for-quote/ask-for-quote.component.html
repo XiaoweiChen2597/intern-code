@@ -1,0 +1,30 @@
+<router-outlet></router-outlet>
+<div *ngIf="!isLoading">
+    <div class="fix-title">
+        <a routerLinkActive="active" routerLink="/company/{{company_id}}/ask-for-quote/incomplete"> <span>Incomplete</span> </a>
+        <a routerLinkActive="active" routerLink="/company/{{company_id}}/ask-for-quote/complete"> <span>Complete</span>  </a>
+    </div>
+    <div *ngFor="let quote of askForQuotes" routerLink="detail/{{quote?.id}}">
+        <mat-card >
+            <div class="customer-info">
+                {{quote?.first_name}} {{quote?.last_name}}
+                <div style="position: absolute; top: 0; right: 0;width: 100px; text-align:right; margin:18px;">
+                    {{quote?.created_at.date | date}}
+                </div>
+            </div>
+            <div class="product-info">
+                <div class="image">
+                    <img src="{{quote?.product.image}}"style="width:60px;height:60px" alt="None">
+                </div>
+                <div class="description">
+                    {{quote?.product.name}}<br>
+                    Quantity: {{quote?.quantity}}
+                </div>   
+            </div>
+        </mat-card>
+    </div> 
+</div>
+
+<div *ngIf="isLoading">
+    <app-spinner></app-spinner>
+</div>

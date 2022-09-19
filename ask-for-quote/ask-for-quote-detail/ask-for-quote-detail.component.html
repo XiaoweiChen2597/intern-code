@@ -1,0 +1,48 @@
+<router-outlet></router-outlet>
+<div *ngIf="!isLoading">
+    <form #priceForm>
+        <mat-card>
+            <div class="customer-info">
+                <b style="font-size: 16px">Personal Information:</b><br>
+                Name:{{askForQuoteDetail?.first_name}} {{askForQuoteDetail?.last_name}}<br>
+                Phone:{{askForQuoteDetail?.phone}} <br>
+                Email:{{askForQuoteDetail?.email}}
+                <div style="position: absolute; top: 0; right: 0;width: 100px; text-align:right; margin:18px;">
+                    {{askForQuoteDetail?.created_at.date | date}}<br>
+                </div>
+            </div>
+        </mat-card>
+        <mat-card>
+            <b style="margin:6px;">Product Information</b><br>
+            <div class="product-info">
+                <div class="image">
+                    <img src="{{askForQuoteDetail?.product.image}}"style="width:100px;height:100px" alt="">
+                </div>
+                <div class="description">
+                    <b>{{askForQuoteDetail?.product.name}}</b><br><br>
+                    {{askForQuoteDetail?.product.description}}
+                </div>   
+            </div>  
+        </mat-card>
+        <mat-card>
+            <div class="price">
+                <div *ngIf="askForQuoteDetail?.is_complete===0 ; else status"> 
+                    <b>Quantity:</b> {{askForQuoteDetail?.quantity}} <br>              
+                    <b>Price:</b> <input type="number" class="PriceControl" name="price" [(ngModel)]="askForQuoteDetail.price">
+                    <button class="submit_button" mat-button (click)="update()">Submit</button> <br>
+                    <b>Status:</b> Incompleted <br>
+                </div>
+                <ng-template #status>
+                    <b>Quantity:</b> {{askForQuoteDetail?.quantity}} <br>
+                    <b>Price:</b>{{askForQuoteDetail?.price}}<br>
+                    <b>Status:</b> Completed <br>
+                    <b>Date:</b>{{askForQuoteDetail?.is_complete_at | date}}<br>
+                </ng-template>
+            </div>
+        </mat-card>
+    </form>
+</div>
+
+<div *ngIf="isLoading">
+    <app-spinner></app-spinner>
+</div>

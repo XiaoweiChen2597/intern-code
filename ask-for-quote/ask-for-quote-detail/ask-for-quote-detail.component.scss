@@ -1,0 +1,64 @@
+:host{
+    width:100%;
+}
+
+
+.customer-info{
+    font-size: 14px;
+    width:100%;
+    margin:6px;
+    line-height: 1.2;
+    text-align:"left";
+}
+
+.product-info{
+    font-size: 14px;
+    width:100%;
+    margin:6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1.2;
+    text-align:"left";
+}
+
+img {
+    max-width: 100%;
+  }
+
+.image {
+    flex-basis: 100%
+  }
+  
+.description {
+    font-size: 12px;
+    padding-left: 10px;
+    padding: 10px;
+  }
+
+.price{
+    font-size: 16px;
+    width:100%;
+    margin:6px;
+    line-height: 1.2;
+    text-align:"left";
+}
+
+.submit_button {
+  padding: 6px 0 !important;
+  text-align: center;
+  font-size: 12px;
+  background-color: #15305a !important;
+  color: white;
+  position: relative
+}
+
+.complete_button {
+  padding: 6px 0 !important;
+  text-align: center;
+  width: 100%;
+  font-size: 12px;
+  background-color: #15305a !important;
+  color: white;
+  position: relative;
+}
