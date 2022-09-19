@@ -1,0 +1,35 @@
+<router-outlet></router-outlet>
+<div>
+    <div class="search-area">
+        <a class="filter-btn" (click)="showFilter()" *ngIf="!showFilterModal">filter</a>
+        <a class="filter-btn" (click)="showFilter()" *ngIf="showFilterModal"></a>
+    </div>
+
+    <data-filter *ngIf="showFilterModal" (dataRange)="getTimeRange($event)"
+    (dateFilterModal)="closeDateFilterModal($event)"></data-filter>
+
+    <div class="summary">
+        <mat-card>
+            Order nunber: {{total_number}}<br>
+            Date: {{startDate | date}} to {{endDate | date}}<br>
+            Total: {{total_amount}}
+        </mat-card>
+    </div>
+
+    <div *ngFor="let sales of quoteList" routerLink="detail/{{sales?.id}}"> 
+        <mat-card >
+            <div class="sales_info">
+                <div class="image">
+                    <img src="{{sales?.product_url}}"style="width:60px;height:60px" alt="None">
+                </div>
+                <div class="sales_detail">
+                    {{sales?.customer_name}} <br>
+                    Total: {{sales?.total | number}} <br>
+                </div>
+                <div style="position: absolute; top: 0; right: 0;width: 100px; text-align:right; margin:18px;">
+                    {{sales?.created_at | date}}
+                </div>
+            </div>
+        </mat-card>
+    </div>
+</div>
